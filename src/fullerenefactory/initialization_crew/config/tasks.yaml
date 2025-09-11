@@ -1,0 +1,46 @@
+parse_query:
+  description: >
+    Parse the user's natural language input about fullerene derivative synthesis 
+    and extract all relevant chemical parameters and computational preferences. 
+    Convert the parsed information into a structured JSON format that conforms 
+    to the fullerene functionalization pipeline schema with proper validation 
+    and default value assignment.
+  expected_output: >
+    A valid JSON object containing: base_fullerene (required), addend (optional), 
+    num_addends (default: 1), reaction_type (default: null), num_results (default: 3), 
+    is_dft (default: false), is_delete_intermediate_files (default: true), 
+    is_store_database (default: false), is_visualize (default: true), and 
+    visualization_number_of_conformers (default: 3). All required fields must 
+    be populated and appropriate defaults applied to missing optional parameters.
+  agent: query_parser
+
+retrieve_base_structure:
+  description: >
+    Retrieve the specified base fullerene molecular structure from online chemical 
+    databases using the fullerene identifier from the parsed query. Download the 
+    structure file, validate its integrity, convert to XYZ format if necessary, 
+    and save it in an organized directory structure with proper naming conventions 
+    for downstream computational workflows.
+  expected_output: >
+    A validated XYZ format file of the base fullerene structure saved in the 
+    local directory system (./fullerene_structures/) with standardized naming 
+    convention, along with metadata about the source, download timestamp, and 
+    validation status. Return the local file path and basic structural information 
+    including atom count and cage completeness confirmation.
+  agent: base_retriever
+
+select_addend:
+  description: >
+    Handle addend selection and structure retrieval based on the parsed query 
+    parameters. If no addends are specified, intelligently select the optimal 
+    addend(s) based on chemical compatibility and user requirements. If addends 
+    are specified, retrieve their molecular structures from PubChem database. 
+    Validate all addend structures and prepare them for reaction modeling workflows.
+  expected_output: >
+    A collection of validated addend molecular structures in appropriate format, 
+    saved with organized naming conventions. For auto-selected addends, provide 
+    justification for selection based on chemical compatibility, reactivity, and 
+    synthetic accessibility. For specified addends, confirm successful retrieval 
+    and structural validation. Return file paths, addend names, and compatibility 
+    assessment for downstream reaction planning.
+  agent: addend_selector

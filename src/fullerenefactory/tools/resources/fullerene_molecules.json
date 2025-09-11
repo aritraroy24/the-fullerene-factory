@@ -1,0 +1,122 @@
+{
+    "C180": {
+        "description": "Download link for C180 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C180/C180-0.xyz"
+    },
+    "C20": {
+        "description": "Download link for C20 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C20/C20-Ih.xyz"
+    },
+    "C24": {
+        "description": "Download link for C24 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C24/C24-D6d.xyz"
+    },
+    "C240": {
+        "description": "Download link for C240 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C240/C240-0.xyz"
+    },
+    "C26": {
+        "description": "Download link for C26 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C26/C26-D3h.xyz"
+    },
+    "C260": {
+        "description": "Download link for C260 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C260/C260-0.xyz"
+    },
+    "C28": {
+        "description": "Download link for C28 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C28/C28-D2.xyz"
+    },
+    "C30": {
+        "description": "Download link for C30 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C30/C30-D5h-1.xyz"
+    },
+    "C32": {
+        "description": "Download link for C32 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C32/C32-C2-1.xyz"
+    },
+    "C320": {
+        "description": "Download link for C320 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C320/C320-0.xyz"
+    },
+    "C34": {
+        "description": "Download link for C34 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C34/C34-C2-1.xyz"
+    },
+    "C36": {
+        "description": "Download link for C36 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C36/C36-C2-1.xyz"
+    },
+    "C38": {
+        "description": "Download link for C38 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C38/C38-C2-1.xyz"
+    },
+    "C40": {
+        "description": "Download link for C40 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C40/C40-D5d-1.xyz"
+    },
+    "C42": {
+        "description": "Download link for C42 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C42/C42-C2-1.xyz"
+    },
+    "C44": {
+        "description": "Download link for C44 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C44/C44-C2-1.xyz"
+    },
+    "C46": {
+        "description": "Download link for C46 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C46/C46-C2-1.xyz"
+    },
+    "C48": {
+        "description": "Download link for C48 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C48/C48-C2-1.xyz"
+    },
+    "C50": {
+        "description": "Download link for C50 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C50/C50-D5h-1.xyz"
+    },
+    "C500": {
+        "description": "Download link for C500 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C500/C500-0.xyz"
+    },
+    "C540": {
+        "description": "Download link for C540 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C540/C540-0.xyz"
+    },
+    "C60": {
+        "description": "Download link for C60 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C60/C60-Ih.xyz"
+    },
+    "C70": {
+        "description": "Download link for C70 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C70/C70-D5h.xyz"
+    },
+    "C72": {
+        "description": "Download link for C72 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C72/C72-D6d.xyz"
+    },
+    "C720": {
+        "description": "Download link for C720 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C720/C720-0.xyz"
+    },
+    "C74": {
+        "description": "Download link for C74 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C74/C74-D3h.xyz"
+    },
+    "C76": {
+        "description": "Download link for C76 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C76/C76-D2.xyz"
+    },
+    "C80": {
+        "description": "Download link for C80 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C80/C80-D5d-1.xyz"
+    },
+    "C82": {
+        "description": "Download link for C82 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C82/C82-C2-1.xyz"
+    },
+    "C84": {
+        "description": "Download link for C84 fullerene",
+        "download_link": "https://nanotube.msu.edu/fullerene/C84/C84-D2-1.xyz"
+    }
+}
