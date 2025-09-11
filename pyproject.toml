@@ -1,0 +1,7 @@
+[project]
+name = "fullerene-factory"
+version = "0.1.0"
+description = "Fullerene Factory: A Python library for generating fullerene isomers after adding addends at various positions"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
