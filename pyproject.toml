@@ -4,4 +4,12 @@ version = "0.1.0"
 description = "Fullerene Factory: A Python library for generating fullerene isomers after adding addends at various positions"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "mace-torch>=0.3.14",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.13.1",
+    "rdkit>=2025.3.6",
+    "crewai>=0.175.0",
+    "crewai-tools>=0.69.0",
+    "ase>=3.26.0",
+]
