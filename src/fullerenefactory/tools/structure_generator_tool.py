@@ -69,7 +69,7 @@ class StructureGenerationTool(BaseTool):
             return "\n".join(cleaned_lines)
 
         def combine_molecules_with_separation(
-            fullerene_mol, addend_mol, min_separation_distance=1
+            fullerene_mol, addend_mol, min_separation_distance=2.5
         ):
             """
             Translates an addend molecule relative to a fullerene molecule to achieve a
