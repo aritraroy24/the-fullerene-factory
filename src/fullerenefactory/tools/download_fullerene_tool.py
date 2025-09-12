@@ -27,7 +27,7 @@ class DownloadFullereneTool(BaseTool):
     name: str = "Download Fullerene Tool"
     description: str = (
         "A tool that downloads the base fullerene structure in .xyz format. "
-        "The input should be in the 'C{n}' format, such as 'C60'. The output folder is temporary/downloaded_structures."
+        "The input should be in the 'C{n}' format, such as 'C60'. The output folder name is 'temporary'."
     )
     args_schema: Type[BaseModel] = DownloadFullereneInput
 
@@ -70,9 +70,9 @@ class DownloadFullereneTool(BaseTool):
         if not download_url:
             return f"Error: No download link found for '{compound_name}'."
 
-        output_folder = "temporary/downloaded_structures"
+        output_folder = "temporary"
         os.makedirs(output_folder, exist_ok=True)
-        file_path = os.path.join(output_folder, f"{compound_name}.xyz")
+        file_path = os.path.join(output_folder, f"{compound_name.lower()}.xyz")
         headers = {"User-Agent": "data-collection-agent/1.0"}
 
         try:

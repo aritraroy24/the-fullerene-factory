@@ -1,0 +1,20 @@
+generate_conformers:
+  description: >
+    Generate a diverse set of 3D molecular conformers for a fullerene-addend system. This task involves performing controlled rotations on a fullerene and an addend molecule, specifically {current_fullerene} and {current_addend}, retrieved from their respective XYZ files, using a specified number of angles ({num_angles}) to create different rotational isomers. The {current_fullerene} and {current_addend} names are the fullerene and addend filenames respectively without extension. The individual components are then combined into a single molecular structure with an optimal separation distance.
+  expected_output: >
+    A folder named `temporary` containing multiple XYZ files, each representing a unique conformer of the combined fullerene-addend system. The file names will be standardized (e.g., `molecule_0.xyz`, `molecule_1.xyz`, etc.). The task should also return a confirmation message indicating the number of conformers successfully generated and saved.
+  agent: conformer_generator
+
+run_optimization:
+  description: >
+    Perform geometry optimization on a set of generated fullerene-addend conformers to find their lowest-energy structures. This task uses a Machine Learning Interatomic Potential (MLIP) model to refine the 3D coordinates, taking into account the specified charge and spin multiplicity.
+  expected_output: >
+    A folder named `temporary` containing a series of optimized structures. The output files will be saved with a standardized naming convention (e.g., `optimized_conformer_0.xyz`, `optimized_conformer_1.xyz`, etc.). The task should also return a list of dictionaries, each containing the details of an optimized conformer, including its final energy in both eV and kcal/mol.
+  agent: optimization_runner
+
+find_best_conformer:
+  description: >
+    Analyze a collection of optimized molecular structures from the `temporary` directory. Calculate the energy of each conformer and identify the single most stable structure.
+  expected_output: >
+    A concise report listing the filename and the calculated energy in eV of the lowest-energy conformer. The output should clearly state the name of the best structure file and its corresponding energy value.
+  agent: best_conformer_finder

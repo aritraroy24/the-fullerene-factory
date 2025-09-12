@@ -1,7 +1,7 @@
 import os
 import json
 from pathlib import Path
-from typing import Type, List, Dict, Any, Optional
+from typing import Type, List
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 import pubchempy as pcp
@@ -15,7 +15,7 @@ class SearchPubChemInput(BaseModel):
 
     compound_names: List[str] = Field(
         ...,
-        description="A list of compound names to search for in PubChem. These are addends for fullerene derivatization.",
+        description="A list of compound names to search for in PubChem. These are addends for fullerene derivatization. Also, they can be passed as SMILES strings.",
     )
 
 
@@ -34,11 +34,11 @@ class SearchPubChemTool(BaseTool):
         self,
         smiles_string: str,
         compound_name: str,
-        output_folder: str = "temporary/downloaded_structures",
     ) -> str:
         """
         Convert a SMILES string to XYZ format and save to an RDKit-readable file.
         """
+        output_folder = "temporary"
         try:
             mol = Chem.MolFromSmiles(smiles_string)
             if mol is None:
@@ -54,7 +54,7 @@ class SearchPubChemTool(BaseTool):
 
             output_dir = Path(output_folder)
             output_dir.mkdir(parents=True, exist_ok=True)
-            full_file_path = output_dir / f"addend_{compound_name}.xyz"
+            full_file_path = output_dir / f"{compound_name}.xyz"
 
             with open(full_file_path, "w") as f:
                 f.write(xyz_string)
@@ -66,8 +66,30 @@ class SearchPubChemTool(BaseTool):
     def _run(self, compound_names: List[str]) -> str:
         """Execute the PubChem search for a list of compounds using pubchempy."""
         results = {}
-        for compound_name in compound_names:
+        for i, compound_name in enumerate(compound_names):
             try:
+                # Step 1: Check if the input is a valid SMILES string.
+                # RDKit's MolFromSmiles returns None for invalid SMILES strings.
+                rdkit_mol = Chem.MolFromSmiles(compound_name, sanitize=True)
+
+                if rdkit_mol is not None:
+                    # Case 1: The input is a valid SMILES.
+                    smiles = compound_name
+
+                    save_result = self._smiles_to_xyz_and_save(smiles, f"addend_{i}")
+
+                    results[compound_name] = {
+                        "query": compound_name,
+                        "structure": {
+                            "smiles": smiles,
+                            "pubchem_cid": "N/A",  # Not applicable for a direct SMILES input
+                        },
+                        "file_save_status": save_result,
+                        "source": "Direct SMILES input",
+                    }
+                    continue  # Move to the next compound
+
+                # Case 2: The input is not a valid SMILES, so proceed with PubChem search.
                 # Use pubchempy to get compounds by name.
                 compounds = pcp.get_compounds(compound_name, "name")
 
@@ -81,7 +103,7 @@ class SearchPubChemTool(BaseTool):
                 smiles = compound.canonical_smiles
 
                 # Perform the SMILES to XYZ conversion and save.
-                save_result = self._smiles_to_xyz_and_save(smiles, compound_name)
+                save_result = self._smiles_to_xyz_and_save(smiles, f"addend_{i}")
 
                 # Create a structure dictionary for the result.
                 structure = {
@@ -95,6 +117,7 @@ class SearchPubChemTool(BaseTool):
                     "query": compound_name,
                     "structure": structure,
                     "file_save_status": save_result,
+                    "source": "PubChem API",
                 }
 
             except pcp.PubChemHTTPError as e:

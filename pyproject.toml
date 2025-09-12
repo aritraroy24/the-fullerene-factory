@@ -9,9 +9,8 @@ dependencies = [
     "rdkit>=2025.3.6",
     "crewai>=0.175.0",
     "crewai-tools>=0.69.0",
-    "ase>=3.26.0",
-    "torch>=",
-    "huggingface_hub",
-    "fairchem-core",
+    "torch>=2.6.0",
+    "huggingface_hub>=0.34.4",
+    "fairchem-core>=2.4.0",
     "pubchempy>=1.0.5",
 ]
