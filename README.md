@@ -6,6 +6,10 @@
 
 The Fullerene Factory is an intelligent Python library that automates the generation and optimization of fullerene isomers with addends at various positions. Using advanced AI agents powered by CrewAI and state-of-the-art machine learning interatomic potentials (MLIPs), this tool streamlines the complex process of fullerene functionalization for materials science and chemistry applications.
 
+## Overall Workflow
+
+[![Overall Workflow](src/assets/fullerenefactory_workflow.jpg)](src/assets/fullerenefactory_workflow.jpg)
+
 ## Key Features
 
 - **Natural Language Processing**: Parse complex chemistry queries using specialized AI agents
