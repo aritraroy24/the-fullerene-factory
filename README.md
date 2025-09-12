@@ -60,13 +60,41 @@ The Fullerene Factory consists of three main crews of AI agents:
    cd the-fullerene-factory
    ```
 
-2. **Install dependencies:**
+2. **Create and activate a virtual environment:**
+
+   **Option A: Using uv (recommended):**
+
+   ```bash
+   # Install uv if you haven't already
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+
+   # Create and activate virtual environment
+   uv venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+   **Option B: Using standard Python venv:**
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
+
+   **Option A: Using uv (recommended):**
+
+   ```bash
+   uv pip install -e .
+   ```
+
+   **Option B: Using standard pip:**
 
    ```bash
    pip install -e .
    ```
 
-3. **Set up environment variables:**
+4. **Set up environment variables:**
    Create a `.env` file in the project root:
 
    ```env
@@ -74,10 +102,12 @@ The Fullerene Factory consists of three main crews of AI agents:
    HF_API_KEY=your_hugging_face_token_here
    ```
 
-4. **Verify installation:**
+5. **Verify installation:**
    ```bash
    python -c "import fullerenefactory; print('Installation successful!')"
    ```
+
+**Note:** Remember to activate your virtual environment (`source .venv/bin/activate` or `.venv\Scripts\activate` on Windows) whenever you work on the project.
 
 ## Quick Start
 
