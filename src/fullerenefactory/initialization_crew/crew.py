@@ -7,6 +7,8 @@ from typing import List
 from ..tools.search_pubchem_tool import SearchPubChemTool
 from ..tools.download_fullerene_tool import DownloadFullereneTool
 
+api_key = os.getenv("DEEPSEEK_API_KEY")
+
 
 @CrewBase
 class InitializationCrew:
@@ -21,9 +23,7 @@ class InitializationCrew:
         return Agent(
             config=self.agents_config["query_parser"],
             verbose=True,
-            llm=LLM(
-                model="deepseek/deepseek-chat", api_key=os.getenv("DEEPSEEK_API_KEY")
-            ),
+            llm=LLM(model="deepseek/deepseek-chat", api_key=api_key),
             query=self.query,
         )
 
@@ -34,9 +34,7 @@ class InitializationCrew:
             config=self.agents_config["base_retriever"],
             tools=[download_fullerene_tool],
             verbose=True,
-            llm=LLM(
-                model="deepseek/deepseek-chat", api_key=os.getenv("DEEPSEEK_API_KEY")
-            ),
+            llm=LLM(model="deepseek/deepseek-chat", api_key=api_key),
         )
 
     @agent
@@ -46,9 +44,10 @@ class InitializationCrew:
             config=self.agents_config["addend_selector"],
             tools=[search_pubchem_tool],
             verbose=True,
-            llm=LLM(
-                model="deepseek/deepseek-chat", api_key=os.getenv("DEEPSEEK_API_KEY")
-            ),
+            llm=LLM(model="deepseek/deepseek-chat", api_key=api_key),
+            # llm=LLM(
+            #     model="fullerene-factory-fine-tuned-model", base_url="http://localhost:11434"
+            # ),
         )
 
     # TASKS
@@ -73,6 +72,17 @@ class InitializationCrew:
             config=self.tasks_config["select_addend"],
             agent=self.addend_selector(),
             context=[self.parse_query(), self.retrieve_base_structure()],
+        )
+
+    @task
+    def return_parsed_query(self) -> Task:
+        return Task(
+            description="""
+                Returns the parsed query from the query parser agent. This task is useful for later stages in the workflow.
+            """,
+            expected_output="A JSON object containing the parsed components of the query, such as the base molecule name and any addends.",
+            agent=self.query_parser(),
+            context=[self.parse_query()],
         )
 
     @crew

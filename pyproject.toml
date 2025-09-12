@@ -10,4 +10,8 @@ dependencies = [
     "crewai>=0.175.0",
     "crewai-tools>=0.69.0",
     "ase>=3.26.0",
+    "torch>=",
+    "huggingface_hub",
+    "fairchem-core",
+    "pubchempy>=1.0.5",
 ]

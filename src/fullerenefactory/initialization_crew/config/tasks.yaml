@@ -1,16 +1,16 @@
 parse_query:
   description: >
-    Parse the user's natural language input about fullerene derivative synthesis 
-    and extract all relevant chemical parameters and computational preferences. 
-    Convert the parsed information into a structured JSON format that conforms 
-    to the fullerene functionalization pipeline schema with proper validation 
+    Parse the user's natural language input about fullerene derivative synthesis
+    and extract all relevant chemical parameters and computational preferences.
+    Convert the parsed information into a structured JSON format that conforms
+    to the fullerene functionalization pipeline schema with proper validation
     and default value assignment.
   expected_output: >
-    A valid JSON object containing: base_fullerene (required), addend (optional), 
-    num_addends (default: 1), reaction_type (default: null), num_results (default: 3), 
-    is_dft (default: false), is_delete_intermediate_files (default: true), 
-    is_store_database (default: false), is_visualize (default: true), and 
-    visualization_number_of_conformers (default: 3). All required fields must 
+    A valid JSON object containing: base_fullerene (required), addends (optional, list),
+    num_addends (default: 1), num_steps (default: 1), num_angles (default: 5),
+    reaction_type (default: null), num_results (default: 3), is_delete_intermediate_files
+    (default: true), is_store_database (default: false), is_visualize (default: true),
+    and visualization_number_of_conformers (default: 3). All required fields must
     be populated and appropriate defaults applied to missing optional parameters.
   agent: query_parser
 
@@ -44,3 +44,18 @@ select_addend:
     and structural validation. Return file paths, addend names, and compatibility 
     assessment for downstream reaction planning.
   agent: addend_selector
+
+return_parsed_query:
+  description: >
+    Retrieve and return the parsed query results from the query parser agent 
+    for use in subsequent workflow stages. This task accesses the structured 
+    JSON output from the initial parsing step and makes it available to 
+    downstream agents for fullerene functionalization processing.
+  expected_output: >
+    The complete parsed JSON object containing all extracted parameters: 
+    base_fullerene, addend (if specified), num_addends, num_orientations, 
+    reaction_type, num_results, is_dft, is_delete_intermediate_files, 
+    is_store_database, is_visualize, and visualization_number_of_conformers. 
+    This structured data serves as input for subsequent workflow tasks 
+    including structure retrieval, addend selection, and reaction modeling.
+  agent: query_parser
