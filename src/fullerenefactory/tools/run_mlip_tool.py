@@ -88,8 +88,8 @@ class RunMLIPTool(BaseTool):
                     atoms.calc = calculator
 
                     # Perform geometry optimization using BFGS for better convergence
-                    # dyn = BFGS(atoms)
-                    # dyn.run(fmax=0.05)
+                    dyn = BFGS(atoms)
+                    dyn.run(fmax=0.05)
 
                     energy_ev = atoms.get_potential_energy()
                     energy_kcal = energy_ev * 23.0609
