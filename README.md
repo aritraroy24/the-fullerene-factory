@@ -230,4 +230,4 @@ For questions, issues, or feature requests:
 
 ---
 
-_Built with ❤️ for the materials science and chemistry community by Claude_
+_Built with ❤️ for the materials science and chemistry community_
