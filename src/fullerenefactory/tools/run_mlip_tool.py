@@ -104,9 +104,6 @@ class RunMLIPTool(BaseTool):
                         }
                     )
 
-                    # Tqdm handles the progress, so you can remove the per-file print
-                    # print(f"Optimization completed. Final energy: {energy_kcal:.6f} kcal/mol")
-
                 except Exception as e:
                     print(f"FairChem UMA optimization failed for {filename}: {str(e)}")
                     continue

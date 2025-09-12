@@ -1,0 +1,27 @@
+store_structures_in_database:
+  description: >
+    Store all optimized_conformer_*.xyz files in a database for long-term storage and analysis. This task is conditional and should only be executed if the is_store_database flag is true. The is_store_database flag value is {is_store_database}.
+  expected_output: >
+    A confirmation message indicating the number of files successfully uploaded to the database, or an informative message if the operation was skipped.
+  agent: database_storer
+
+find_best_conformers:
+  description: >
+    Analyze the optimized_conformer_*.xyz files in the temporary directory. Calculate the energy for each structure and identify the top num_results conformers with the lowest energy. The output should be a clear report of the filenames and their corresponding energies. The best structures should also be copied to a new best_results folder. The num_results value is {num_results}.
+  expected_output: >
+    A concise report listing the filenames and calculated energies for the top N lowest-energy conformers and a confirmation that the best structure files have been copied to the best_results folder.
+  agent: best_conformers_finder
+
+remove_temporary_files:
+  description: >
+    Delete the entire 'temporary' folder and all its contents using the Folder Deletion Tool. This task is conditional and should only be executed if the is_delete_intermediate_files flag is true. The is_delete_intermediate_files flag value is {is_delete_intermediate_files}.
+  expected_output: >
+    A confirmation message detailing the successful deletion of the folder. If the flag is false, a message stating that the deletion was skipped.
+  agent: temporary_files_remover
+
+get_best_results:
+  description: >
+    Generate a detailed text report about the best conformers. The agent will read all '.xyz' files from the 'best_results' folder, calculate their energies, and return a comprehensive report listing the files sorted by energy.
+  expected_output: >
+    A detailed text report listing all the files found in the 'best_results' folder, along with their calculated energies.
+  agent: best_result_shower

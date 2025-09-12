@@ -6,8 +6,7 @@ query_parser:
     structured JSON format following the exact schema: base_fullerene (required),
     addends (optional, list), num_addends (default: 1), num_steps (default: 1), num_angles (default: 5),
     reaction_type (default: null), num_results (default: 3), is_delete_intermediate_files
-    (default: true), is_store_database (default: false), is_visualize (default: true),
-    and visualization_number_of_conformers (default: 3). Always return valid JSON
+    (default: true), and is_store_database (default: false). Always return valid JSON
     with required fields populated and defaults applied.
   backstory: >
     You are an expert computational chemistry assistant specialized in fullerene

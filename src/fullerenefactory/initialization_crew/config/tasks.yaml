@@ -1,61 +1,27 @@
 parse_query:
   description: >
-    Parse the user's natural language input about fullerene derivative synthesis
-    and extract all relevant chemical parameters and computational preferences.
-    Convert the parsed information into a structured JSON format that conforms
-    to the fullerene functionalization pipeline schema with proper validation
-    and default value assignment.
+    Parse the user's natural language input about fullerene derivative synthesis and extract all relevant chemical parameters and computational preferences. Convert the parsed information into a structured JSON format that conforms to the fullerene functionalization pipeline schema with proper validation and default value assignment.
   expected_output: >
-    A valid JSON object containing: base_fullerene (required), addends (optional, list),
-    num_addends (default: 1), num_steps (default: 1), num_angles (default: 5),
-    reaction_type (default: null), num_results (default: 3), is_delete_intermediate_files
-    (default: true), is_store_database (default: false), is_visualize (default: true),
-    and visualization_number_of_conformers (default: 3). All required fields must
-    be populated and appropriate defaults applied to missing optional parameters.
+    A valid JSON object containing: base_fullerene (required), addends (optional, list), num_addends (default: 1), num_steps (default: 1), num_angles (default: 5), reaction_type (default: null), num_results (default: 3), is_delete_intermediate_files (default: true), and is_store_database (default: false). All required fields must be populated and appropriate defaults applied to missing optional parameters.
   agent: query_parser
 
 retrieve_base_structure:
   description: >
-    Retrieve the specified base fullerene molecular structure from online chemical 
-    databases using the fullerene identifier from the parsed query. Download the 
-    structure file, validate its integrity, convert to XYZ format if necessary, 
-    and save it in an organized directory structure with proper naming conventions 
-    for downstream computational workflows.
+    Retrieve the specified base fullerene molecular structure from online chemical databases using the fullerene identifier from the parsed query. Download the structure file, validate its integrity, convert to XYZ format if necessary, and save it in an organized directory structure with proper naming conventions for downstream computational workflows.
   expected_output: >
-    A validated XYZ format file of the base fullerene structure saved in the 
-    local directory system (./fullerene_structures/) with standardized naming 
-    convention, along with metadata about the source, download timestamp, and 
-    validation status. Return the local file path and basic structural information 
-    including atom count and cage completeness confirmation.
+    A validated XYZ format file of the base fullerene structure saved in the local directory system (./fullerene_structures/) with standardized naming convention, along with metadata about the source, download timestamp, and validation status. Return the local file path and basic structural information including atom count and cage completeness confirmation.
   agent: base_retriever
 
 select_addend:
   description: >
-    Handle addend selection and structure retrieval based on the parsed query 
-    parameters. If no addends are specified, intelligently select the optimal 
-    addend(s) based on chemical compatibility and user requirements. If addends 
-    are specified, retrieve their molecular structures from PubChem database. 
-    Validate all addend structures and prepare them for reaction modeling workflows.
+    Handle addend selection and structure retrieval based on the parsed query parameters. If no addends are specified, intelligently select the optimal addend(s) based on chemical compatibility and user requirements. If addends are specified, retrieve their molecular structures from PubChem database. Validate all addend structures and prepare them for reaction modeling workflows.
   expected_output: >
-    A collection of validated addend molecular structures in appropriate format, 
-    saved with organized naming conventions. For auto-selected addends, provide 
-    justification for selection based on chemical compatibility, reactivity, and 
-    synthetic accessibility. For specified addends, confirm successful retrieval 
-    and structural validation. Return file paths, addend names, and compatibility 
-    assessment for downstream reaction planning.
+    A collection of validated addend molecular structures in appropriate format, saved with organized naming conventions. For auto-selected addends, provide justification for selection based on chemical compatibility, reactivity, and synthetic accessibility. For specified addends, confirm successful retrieval and structural validation. Return file paths, addend names, and compatibility assessment for downstream reaction planning.
   agent: addend_selector
 
 return_parsed_query:
   description: >
-    Retrieve and return the parsed query results from the query parser agent 
-    for use in subsequent workflow stages. This task accesses the structured 
-    JSON output from the initial parsing step and makes it available to 
-    downstream agents for fullerene functionalization processing.
+    Retrieve and return the parsed query results from the query parser agent for use in subsequent workflow stages. This task accesses the structured JSON output from the initial parsing step and makes it available to downstream agents for fullerene functionalization processing.
   expected_output: >
-    The complete parsed JSON object containing all extracted parameters: 
-    base_fullerene, addend (if specified), num_addends, num_orientations, 
-    reaction_type, num_results, is_dft, is_delete_intermediate_files, 
-    is_store_database, is_visualize, and visualization_number_of_conformers. 
-    This structured data serves as input for subsequent workflow tasks 
-    including structure retrieval, addend selection, and reaction modeling.
+    The complete parsed JSON object containing all extracted parameters: base_fullerene, addend (if specified), num_addends, num_orientations, reaction_type, num_results, is_dft, is_delete_intermediate_files, and is_store_database. This structured data serves as input for subsequent workflow tasks including structure retrieval, addend selection, and reaction modeling.
   agent: query_parser
