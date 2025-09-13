@@ -224,9 +224,9 @@ For questions, issues, or feature requests:
 - Ilija Rašović (https://github.com/IlijaRasovic)
 - Aritra Roy (https://github.com/aritraroy24)
 - Piyush R. Maharana (https://github.com/catastropiyush)
-- Yassir Ben Kacem (https://github.com/indra1080)
+- Yassir Ben Kacem (https://github.com/loskacemos)
 - Mourad El Haddaoui (https://github.com/indra1080)
-- Nurlybek Temirbay (https://github.com/indra1080)
+- Nurlybek Temirbay (https://github.com/molspace)
 
 ---
 
