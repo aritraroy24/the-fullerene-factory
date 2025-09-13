@@ -200,7 +200,7 @@ If you use The Fullerene Factory in your research, please cite:
   title={The Fullerene Factory: AI-Powered Fullerene Functionalization},
   author={Team Fullerene Factory},
   year={2025},
-  url={https://github.com/your-username/the-fullerene-factory}
+  url={https://github.com/aritraroy24/the-fullerene-factory}
 }
 ```
 
