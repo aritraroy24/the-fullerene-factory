@@ -8,7 +8,7 @@ The Fullerene Factory is an intelligent Python library that automates the genera
 
 ## Overall Workflow
 
-[![Overall Workflow](src/assets/fullerenefactory_workflow.jpg)](src/assets/fullerenefactory_workflow.jpg)
+![Overall Workflow](src/assets/fullerenefactory_workflow.jpg)
 
 ## Key Features
 
